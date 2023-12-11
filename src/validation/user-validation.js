@@ -23,6 +23,14 @@ const updateUserValidation = Joi.object({
     email: Joi.string().max(50).optional(),
 });
 
+const updateProfileValidation = Joi.object({
+    firstName: Joi.string().max(50).optional(),
+    lastName: Joi.string().max(50).optional(),
+    password: Joi.string().max(200).optional(),
+    phone: Joi.string().max(30).optional(),
+    email: Joi.string().max(50).optional(),
+});
+
 const getUserValidation = Joi.number().positive().required();
 
 export {
@@ -30,4 +38,5 @@ export {
     loginUserValidation,
     updateUserValidation,
     getUserValidation,
+    updateProfileValidation,
 };

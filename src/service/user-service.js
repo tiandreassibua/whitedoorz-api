@@ -3,6 +3,7 @@ import { prismaClient } from "../application/database.js";
 import { ResponseError } from "../error/response-error.js";
 import {
     getUserValidation,
+    updateProfileValidation,
     updateUserValidation,
 } from "../validation/user-validation.js";
 import { validate } from "../validation/validation.js";
@@ -102,4 +103,61 @@ const index = () => {
     });
 };
 
-export default { get, update, index, remove };
+const profile = (userId) => {
+    userId = validate(getUserValidation, userId);
+
+    return prismaClient.user.findUnique({
+        where: {
+            id: userId,
+        },
+        select: {
+            id: true,
+            firstName: true,
+            lastName: true,
+            email: true,
+            phone: true,
+        },
+    });
+};
+
+const updateProfile = async (request, userId) => {
+    userId = validate(getUserValidation, userId);
+    request = validate(updateProfileValidation, request);
+
+    const user = await prismaClient.user.findUnique({
+        where: {
+            id: userId,
+        },
+    });
+
+    if (!user) {
+        throw new ResponseError(404, "user is not found");
+    }
+
+    if (request.password) {
+        request.password = await bcrypt.hash(request.password, 10);
+    }
+
+    request.firstName = request.firstName || user.firstName;
+    request.lastName = request.lastName || user.lastName;
+    request.phone = request.phone || user.phone;
+    request.email = request.email || user.email;
+
+    await prismaClient.user.update({
+        where: {
+            id: userId,
+        },
+        data: request,
+        select: {
+            id: true,
+            firstName: true,
+            lastName: true,
+            email: true,
+            phone: true,
+        },
+    });
+
+    return request;
+};
+
+export default { get, update, index, remove, profile, updateProfile };

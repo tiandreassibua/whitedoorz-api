@@ -42,4 +42,22 @@ const index = async (req, res, next) => {
     }
 };
 
-export default { get, update, index, remove };
+const profile = async (req, res, next) => {
+    try {
+        const result = await userService.profile(req.user.id);
+        res.status(200).json({ data: result });
+    } catch (e) {
+        next(e);
+    }
+};
+
+const updateProfile = async (req, res, next) => {
+    try {
+        const result = await userService.updateProfile(req.body, req.user.id);
+        res.status(200).json({ data: result });
+    } catch (e) {
+        next(e);
+    }
+};
+
+export default { get, update, index, remove, profile, updateProfile };

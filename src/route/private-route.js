@@ -16,10 +16,12 @@ import authController from "../controller/auth-controller.js";
 
 const router = express.Router();
 
-// Authentication Route
-router.delete("/api/auth/logout", verifyToken, authController.logout);
-
 // User Route
+router
+    .route("/api/users/profile")
+    .get(verifyToken, userController.profile)
+    .put(verifyToken, userController.updateProfile);
+
 router.get("/api/users", verifyAdmin, userController.index);
 router.get("/api/users/:id", verifyUser, userController.get);
 router.patch("/api/users/:id", verifyUser, userController.update);
