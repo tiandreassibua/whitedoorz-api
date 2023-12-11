@@ -33,7 +33,7 @@
 
     // 3306 itu port default bawaan mysql
     ```
-- Kemudian buat database di di mysql, dan pastikan sesuai dengan yang ada di env variable
+- Kemudian buat database di mysql, dan pastikan sesuai dengan yang ada di env variable
 - setelah itu jalankan perintah berikut di terminal
     ```
     npx prisma db push
