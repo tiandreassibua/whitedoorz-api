@@ -143,7 +143,7 @@ const updateProfile = async (request, userId) => {
     request.phone = request.phone || user.phone;
     request.email = request.email || user.email;
 
-    await prismaClient.user.update({
+    return prismaClient.user.update({
         where: {
             id: userId,
         },
@@ -156,8 +156,6 @@ const updateProfile = async (request, userId) => {
             phone: true,
         },
     });
-
-    return request;
 };
 
 export default { get, update, index, remove, profile, updateProfile };

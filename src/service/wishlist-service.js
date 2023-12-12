@@ -35,7 +35,7 @@ const remove = async (userId, propId, id) => {
 
     const check = await prismaClient.wishlist.findUnique({
         where: {
-            id: id,
+            id: parseInt(id),
             userId_propertyId: {
                 userId: userId,
                 propertyId: propId,
@@ -46,7 +46,7 @@ const remove = async (userId, propId, id) => {
     if (check) {
         return prismaClient.wishlist.delete({
             where: {
-                id: id,
+                id: parseInt(id),
                 userId_propertyId: {
                     userId: userId,
                     propertyId: propId,
