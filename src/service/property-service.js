@@ -3,12 +3,55 @@ import { ResponseError } from "../error/response-error.js";
 import { createSlug } from "../utils/generateSlug.js";
 import {
     createPropertyValidation,
-    getPropertyValidation,
+    getPropertyValidation, searchPropertyValidation,
 } from "../validation/property-validation.js";
 import { validate } from "../validation/validation.js";
 
-const index = async () => {
-    return prismaClient.property.findMany();
+const search = async (request) => {
+    request = validate(searchPropertyValidation, request)
+
+    const skip = (request.page - 1) * request.size
+
+    const filters = []
+    if (request.name) {
+        filters.push({
+            name: {
+                contains: request.name
+            }
+        })
+    }
+
+    if (request.city) {
+        filters.push({
+            city: {
+                contains: request.city
+            }
+        })
+    }
+
+    const properties = await prismaClient.property.findMany({
+        where: {
+            AND: filters
+        },
+        take: request.size,
+        skip: skip
+    })
+
+    const totalItems = await prismaClient.property.count({
+        where: {
+            AND: filters
+        }
+    })
+
+    return {
+        data: properties,
+        paging: {
+            page: 1,
+            totalPage: Math.ceil(totalItems / request.size),
+            totalItem: totalItems
+        },
+
+    };
 };
 
 const show = async (slug) => {
@@ -100,4 +143,4 @@ const remove = async (propId) => {
     return prismaClient.property.delete({ where: { id } });
 };
 
-export default { index, create, update, remove, show };
+export default { search, create, update, remove, show };

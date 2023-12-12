@@ -35,10 +35,10 @@
     ```
 - Kemudian buat database di mysql, dan pastikan sesuai dengan yang ada di env variable
 - setelah itu jalankan perintah berikut di terminal
-    ```
+    ```shell
     npx prisma db push
     ```
 - untuk menjalankan servernya bisa menjalankan command berikut
-    ```
+    ```shell
     npm run dev
     ```

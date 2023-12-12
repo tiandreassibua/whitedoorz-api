@@ -1,9 +1,11 @@
 import propertyService from "../service/property-service.js";
 
-const index = async (req, res, next) => {
+const search = async (req, res, next) => {
     try {
-        const result = await propertyService.index();
-        res.status(200).json({ data: result });
+        const request = req.query;
+
+        const result = await propertyService.search(request);
+        res.status(200).json(result);
     } catch (e) {
         next(e);
     }
@@ -51,4 +53,4 @@ const remove = async (req, res, next) => {
     }
 };
 
-export default { index, create, update, remove, show };
+export default { search, create, update, remove, show };

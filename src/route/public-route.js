@@ -8,7 +8,7 @@ const router = express.Router();
 router.post("/api/auth/register", authController.register);
 router.post("/api/auth/login", authController.login);
 
-router.get("/api/properties", propertyController.index);
+router.get("/api/properties", propertyController.search);
 router.get("/api/properties/:slug", propertyController.show);
 
 export default router;
