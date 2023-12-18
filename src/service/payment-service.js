@@ -84,19 +84,22 @@ const callback = async (response) => {
     throw new ResponseError(400, "total price is not valid");
   }
 
-  if (transaction_status == "capture") {
-    if (fraud_status == "challenge") {
+  if (transaction_status === "capture") {
+    if (fraud_status === "challenge") {
       setTransactionStatus(order_id, "challenge");
-    } else if (fraud_status == "accept") {
+    } else if (fraud_status === "accept") {
       setTransactionStatus(order_id, "success");
     }
-  } else if (transaction_status == "settlement") {
+  } else if (transaction_status === "settlement") {
     setTransactionStatus(order_id, "success");
-  } else if (transaction_status == "deny") {
+  } else if (transaction_status === "deny") {
     setTransactionStatus(order_id, "failed");
-  } else if (transaction_status == "cancel" || transaction_status == "expire") {
+  } else if (
+    transaction_status === "cancel" ||
+    transaction_status === "expire"
+  ) {
     setTransactionStatus(order_id, "failed");
-  } else if (transaction_status == "pending") {
+  } else if (transaction_status === "pending") {
     setTransactionStatus(order_id, "pending");
   }
 };
