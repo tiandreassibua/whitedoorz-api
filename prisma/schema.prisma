@@ -70,20 +70,19 @@ enum Category {
 }
 
 model Room {
-  id           Int      @id @default(autoincrement())
-  propertyId   Int
-  image        String   @db.Text
-  name         String   @db.VarChar(150)
-  price        Int      @default(0) @db.Int
-  maxPeople    Int      @default(1) @db.Int
-  bedQty       Int      @default(1) @db.Int
-  availableQty Int      @default(1) @db.Int
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id         Int      @id @default(autoincrement())
+  propertyId Int
+  image      String   @db.Text
+  name       String   @db.VarChar(150)
+  price      Int      @default(0) @db.Int
+  maxPeople  Int      @default(1) @db.Int
+  bedQty     Int      @default(1) @db.Int
+  available  Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   transactionRoom TransactionRoom[]
-
-  property Property @relation(fields: [propertyId], references: [id])
+  property        Property          @relation(fields: [propertyId], references: [id])
 
   @@map("rooms")
 }
@@ -116,9 +115,8 @@ model Transaction {
   updatedAt    DateTime @updatedAt
 
   transactionRoom TransactionRoom[]
-
-  user     User     @relation(fields: [userId], references: [id])
-  property Property @relation(fields: [propertyId], references: [id])
+  user            User              @relation(fields: [userId], references: [id])
+  property        Property          @relation(fields: [propertyId], references: [id])
 
   @@map("transactions")
 }
@@ -135,7 +133,6 @@ model TransactionRoom {
   id            Int      @id @default(autoincrement())
   transactionId String
   roomId        Int
-  roomQty       Int
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 

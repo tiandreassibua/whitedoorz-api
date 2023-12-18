@@ -1,5 +1,4 @@
 import { validate } from "../validation/validation.js";
-import {} from "../validation/payment-validation.js";
 import { prismaClient } from "../application/database.js";
 import { ResponseError } from "../error/response-error.js";
 import { snap } from "../application/midtrans.js";
@@ -33,7 +32,7 @@ const create = async (userId, transactionId) => {
     item_details: transaction.transactionRooms.map((trxRoom) => ({
       id: trxRoom.roomId,
       price: trxRoom.roomPrice,
-      quantity: trxRoom.roomQty,
+      quantity: 1,
       name: trxRoom.roomName,
     })),
     customer_details: {
@@ -89,9 +88,11 @@ const callback = async (response) => {
       setTransactionStatus(order_id, "challenge");
     } else if (fraud_status === "accept") {
       setTransactionStatus(order_id, "success");
+      await setAvailableRoom(order_id);
     }
   } else if (transaction_status === "settlement") {
     setTransactionStatus(order_id, "success");
+    await setAvailableRoom(order_id);
   } else if (transaction_status === "deny") {
     setTransactionStatus(order_id, "failed");
   } else if (
@@ -110,6 +111,29 @@ const setTransactionStatus = async (transactionId, status) => {
       id: transactionId,
     },
     data: { status },
+  });
+};
+
+const setAvailableRoom = async (transactionId) => {
+  const transaction = await prismaClient.transaction.findUnique({
+    where: {
+      id: transactionId,
+    },
+    select: {
+      transactionRoom: true,
+    },
+  });
+
+  const roomIds = transaction.transactionRoom.map((trxRoom) => trxRoom.roomId);
+  await prismaClient.room.updateMany({
+    where: {
+      id: {
+        in: roomIds,
+      },
+    },
+    data: {
+      available: false,
+    },
   });
 };
 

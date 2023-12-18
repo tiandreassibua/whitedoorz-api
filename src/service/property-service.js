@@ -61,11 +61,6 @@ const show = async (slug) => {
     where: { slug },
     include: {
       rooms: {
-        where: {
-          availableQty: {
-            gte: 1,
-          },
-        },
         select: {
           id: true,
           name: true,
@@ -73,7 +68,7 @@ const show = async (slug) => {
           price: true,
           maxPeople: true,
           bedQty: true,
-          availableQty: true,
+          available: true,
         },
       },
       review: {
@@ -87,17 +82,6 @@ const show = async (slug) => {
           body: true,
           rating: true,
           createdAt: true,
-        },
-      },
-      _count: {
-        select: {
-          rooms: {
-            where: {
-              availableQty: {
-                gte: 1,
-              },
-            },
-          },
         },
       },
     },
