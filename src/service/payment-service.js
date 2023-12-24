@@ -23,6 +23,9 @@ const create = async (userId, transactionId) => {
   }
 
   const transaction = await transactionService.get(userId, transactionId);
+  const nights =
+        new Date(transaction.checkOut).getDate() -
+        new Date(transaction.checkIn).getDate();
 
   const params = {
     transaction_details: {
@@ -32,7 +35,7 @@ const create = async (userId, transactionId) => {
     item_details: transaction.transactionRooms.map((trxRoom) => ({
       id: trxRoom.roomId,
       price: trxRoom.roomPrice,
-      quantity: 1,
+      quantity: nights,
       name: trxRoom.roomName,
     })),
     customer_details: {

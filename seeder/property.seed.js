@@ -26,8 +26,10 @@ const propertySeed = async () => {
         });
     }
 
-    const property = await prismaClient.property.createMany({ data });
-    console.log("success seed property");
+    await prismaClient.property
+        .createMany({ data })
+        .then(() => console.log("Property seed success"))
+        .catch((e) => console.error(e));
 };
 
 propertySeed()
