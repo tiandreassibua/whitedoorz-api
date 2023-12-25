@@ -178,6 +178,7 @@ const get = async (userId, transactionId) => {
                     room: true,
                 },
             },
+            property: true,
             user: true,
         },
     });
