@@ -196,6 +196,7 @@ const get = async (userId, transactionId) => {
         totalPrice: trx.totalPrice,
         status: trx.status,
         redirect_url: trx.redirect_url,
+        property: trx.property,
         transactionRooms: trx.transactionRoom.map((trxRoom) => ({
             id: trxRoom.id,
             roomId: trxRoom.room.id,
