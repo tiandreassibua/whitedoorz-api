@@ -97,7 +97,7 @@ const create = async (userId, request) => {
         return total + room.price;
     }, 0);
 
-    if (totalPrice * nights !== request.transaction.totalPrice * nights) {
+    if (totalPrice * nights !== request.transaction.totalPrice) {
         throw new ResponseError(
             400,
             "total price is not valid with sum of rooms price"
@@ -109,7 +109,7 @@ const create = async (userId, request) => {
             propertyId: request.transaction.propertyId,
             checkIn: request.transaction.checkIn,
             checkOut: request.transaction.checkOut,
-            totalPrice: (request.transaction.totalPrice * nights),
+            totalPrice: request.transaction.totalPrice,
             userId,
         },
     });

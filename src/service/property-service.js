@@ -48,7 +48,7 @@ const search = async (request) => {
     data: {
       properties,
       paging: {
-        page: 1,
+        page: request.page,
         totalPage: Math.ceil(totalItems / request.size),
         totalItem: totalItems,
       },
