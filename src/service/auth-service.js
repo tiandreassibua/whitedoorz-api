@@ -31,6 +31,7 @@ const register = async (request) => {
             lastName: true,
             phone: true,
             email: true,
+            image: true,
         },
     });
 };

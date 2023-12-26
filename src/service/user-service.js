@@ -143,6 +143,7 @@ const updateProfile = async (request, userId) => {
     request.lastName = request.lastName || user.lastName;
     request.phone = request.phone || user.phone;
     request.email = request.email || user.email;
+    request.image = request.image || user.image;
 
     return prismaClient.user.update({
         where: {
@@ -155,6 +156,7 @@ const updateProfile = async (request, userId) => {
             lastName: true,
             email: true,
             phone: true,
+            image: true,
         },
     });
 };
