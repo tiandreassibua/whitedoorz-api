@@ -67,7 +67,7 @@ const get = (userId) => {
         },
         select: {
             id: true,
-            propertyId: true,
+            property: true
         },
     });
 };
