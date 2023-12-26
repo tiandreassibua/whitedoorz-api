@@ -49,6 +49,7 @@ const login = async (request) => {
             email: true,
             phone: true,
             password: true,
+            image: true,
             isAdmin: true,
         },
     });

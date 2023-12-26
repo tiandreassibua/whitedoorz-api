@@ -116,6 +116,7 @@ const profile = (userId) => {
             lastName: true,
             email: true,
             phone: true,
+            image: true,
         },
     });
 };
