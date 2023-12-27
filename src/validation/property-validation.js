@@ -12,10 +12,13 @@ const createPropertyValidation = Joi.object({
 const searchPropertyValidation = Joi.object({
     page: Joi.number().positive().min(1).default(1),
     size: Joi.number().positive().min(1).max(100).default(10),
-    name: Joi.string().optional(),
-    city: Joi.string().optional()
-})
+    keyword: Joi.string().optional(),
+});
 
 const getPropertyValidation = Joi.number().positive().required();
 
-export { createPropertyValidation, getPropertyValidation, searchPropertyValidation };
+export {
+    createPropertyValidation,
+    getPropertyValidation,
+    searchPropertyValidation,
+};
