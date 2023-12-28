@@ -21,17 +21,17 @@ const create = async (userId, request) => {
     ) {
         throw new ResponseError(
             400,
-            "checkIn must be less than checkOut baris 22"
+            "Tanggal check in harus lebih kecil dari tanggal check out"
         );
     } else if (new Date(request.transaction.checkIn) < new Date()) {
         throw new ResponseError(
             400,
-            "checkIn must be greater than today baris 24"
+            "Tanggal check in harus lebih besar dari tanggal hari ini"
         );
     } else if (new Date(request.transaction.checkOut) < new Date()) {
         throw new ResponseError(
             400,
-            "checkOut must be greater than today baris 28"
+            "Tanggal check out harus lebih besar dari tanggal hari ini"
         );
     } else if (
         new Date(request.transaction.checkOut) <
@@ -39,7 +39,7 @@ const create = async (userId, request) => {
     ) {
         throw new ResponseError(
             400,
-            "checkOut must be greater than checkIn baris 36"
+            "Tanggal check out harus lebih besar dari tanggal check in"
         );
     } else if (
         new Date(request.transaction.checkIn) >
@@ -47,7 +47,7 @@ const create = async (userId, request) => {
     ) {
         throw new ResponseError(
             400,
-            "checkIn must be less than checkOut baris 42"
+            "Tanggal check in harus lebih kecil dari tanggal check out"
         );
     }
 
