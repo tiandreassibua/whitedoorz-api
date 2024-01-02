@@ -17,7 +17,7 @@ Request Body:
 ```json
 {
   "name": "Deluxe King Garden View With Balcony",
-  "image": "https://images.reddoorz.com/photos/308550/desktop_hotel_gallery_large_900x600_DSC06927.webp"
+  "image": ""
   "price": 550000,
   "maxPeople": 2,
   "bedQty": 1,
@@ -32,7 +32,7 @@ Response Body Success :
   "data": {
     "id": 3,
     "propertyId": 5,
-    "image": "https://images.reddoorz.com/photos/308550/desktop_hotel_gallery_large_900x600_DSC06927.webp",
+    "image": "",
     "name": "Deluxe King Garden View With Balcony",
     "price": 550000,
     "maxPeople": 2,

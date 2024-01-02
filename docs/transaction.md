@@ -86,7 +86,7 @@ Response Body Success :
           "roomId": 1,
           "roomQty": 1,
           "roomName": "Deluxe Twin Garden View With Balcony",
-          "roomImg": "https://images.reddoorz.com/photos/107572/desktop_hotel_gallery_large_900x600_44fbbd02-951b-4249-b647-b8797cdfcca2_2Flead%2Bdesktop.webp",
+          "roomImg": "",
           "roomPrice": 550000,
           "roomMaxPeople": 4,
           "roomBedQty": 2
@@ -96,7 +96,7 @@ Response Body Success :
           "roomId": 2,
           "roomQty": 1,
           "roomName": "Deluxe King Garden View With Balcony",
-          "roomImg": "https://images.reddoorz.com/photos/308550/desktop_hotel_gallery_large_900x600_DSC06927.webp",
+          "roomImg": "",
           "roomPrice": 550000,
           "roomMaxPeople": 2,
           "roomBedQty": 1
@@ -144,7 +144,7 @@ Response Body Success :
         "roomId": 1,
         "roomQty": 1,
         "roomName": "Deluxe Twin Garden View With Balcony",
-        "roomImg": "https://images.reddoorz.com/photos/107572/desktop_hotel_gallery_large_900x600_44fbbd02-951b-4249-b647-b8797cdfcca2_2Flead%2Bdesktop.webp",
+        "roomImg": "",
         "roomPrice": 550000,
         "roomMaxPeople": 4,
         "roomBedQty": 2
@@ -154,7 +154,7 @@ Response Body Success :
         "roomId": 2,
         "roomQty": 1,
         "roomName": "Deluxe King Garden View With Balcony",
-        "roomImg": "https://images.reddoorz.com/photos/308550/desktop_hotel_gallery_large_900x600_DSC06927.webp",
+        "roomImg": "",
         "roomPrice": 550000,
         "roomMaxPeople": 2,
         "roomBedQty": 1
